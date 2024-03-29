@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/kiosk.css">
+    <script src="../js/bootstrap.bundle.js"></script>
+
+    <title>Kiosk Interface</title>
+</head>
+<body>
+    <div class="container-fluid h-100">
+        <div class="row h-100 d-flex">
+            <!-- Map -->
+            <div class="col-7 p-5 h-100 d-flex flex-column">
+                MAP
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-5 p-5 d-flex flex-column align-items-center justify-content-center contain-status">
+                <div class="container d-flex flex-column align-items-center">
+                    <h1>App Name</h1>
+                    <div class="container d-flex flex-column align-items-center" id="kioskStatus">
+                        <div class="status" id="status">
+                            <div class="status-indicator" id="status-indicator"></div>
+                            <div class="status-text">Offline</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary button" id="toggleStatus">
+                    Turn on
+                </button>
+                
+            </div>
+
+        </div>
+    </div>
+
+    <script src="../js/status.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/kiosk.css">
+    <script src="../js/bootstrap.bundle.js"></script>
+
+    <title>Kiosk Interface</title>
+</head>
+<body>
+    <div class="container-fluid h-100">
+        <div class="row h-100 d-flex">
+            <!-- Map -->
+            <div class="col-7 p-5 h-100 d-flex flex-column">
+                MAP
+                <a href="../html/accepted-confirmed.html" class="fw-bold fs-1">Confirmed</a>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-5 p-5 d-flex flex-column align-items-center justify-content-center contain-status">                
+                <img src="../images/tap-card.png" alt="" >
+                <h2 class="mt-3 fw-bold">Tap your card to confirm</h2>
+
+                <a class="btn btn-danger button" id="toggleStatus" href="../html/searching.html">
+                    Cancel
+                </a> 
+            </div>
+
+        </div>
+    </div>
+
+    <script src="../js/status.js"></script>
+</body>
+</html>

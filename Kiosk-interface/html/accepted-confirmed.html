@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/kiosk.css">
+    <script src="../js/bootstrap.bundle.js"></script>
+
+    <title>Kiosk Interface</title>
+</head>
+<body>
+    <div class="container-fluid h-100">
+        <div class="row h-100 d-flex">
+            <!-- Ride Details -->
+            <div class="col-11 p-5 h-100 d-flex flex-column">
+                <div class="container ride-details p-0">
+                    <img src="../images/check-one.png" alt="">
+                    <h1 class="fw-bold">Ride Confirmed #XXXX</h1>
+                    <h3>Go to the passenger’s location, STAY SAFE!</h3>
+
+                    <div class="passenger-details d-flex align-items-center mt-4">
+                        <!-- Passener Details -->
+                        <div class="passenger">
+                            <h2 class="fw-bold">Passenger</h2>
+                            <h4>Name</h4>
+                            <h4>Address</h4>
+                            <h4>Gender</h4>
+                            <h4>Contanct #</h4>
+                        </div>
+
+                        <div class="note">
+                            <h2 class="fw-bold">Note</h2>
+                            <div class="passenger-notes"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-1 p-5 d-flex flex-column align-items-center justify-content-center contain-status">
+                <div class="container d-flex flex-column align-items-center">
+                    <a href="../html/searching.html" class="fw-bold fs-3">></a>
+                    <a href="../html/searching.html">Continue</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="../js/status.js"></script>
+</body>
+</html>

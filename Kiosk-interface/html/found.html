@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/kiosk.css">
+    <script src="../js/bootstrap.bundle.js"></script>
+
+    <title>Kiosk Interface</title>
+</head>
+<body>
+    <div class="container-fluid h-100">
+        <div class="row h-100 d-flex">
+            <!-- Map -->
+            <div class="col-7 p-5 h-100 d-flex flex-column">
+                MAP
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-5 p-5 d-flex flex-column align-items-center justify-content-center contain-status">
+                <div class="container transaction-details p-0">
+                    <h1 class="fw-bold">Passenger Found</h1>
+                    <div class="customer-details d-flex align-items-center">
+                        <img src="../images/user-icon.ico" alt="profile-icon">
+                        <div class="customer">
+                            <h5>Juan Dela Cruz</h5>
+                            <h5>Address</h5>
+                        </div>
+                    </div>
+                    <h4>Fare Details</h4>
+                    <h4>&#8369 100</h4>
+                    <h4>Payment Method</h4>
+                    <div class="payment-method d-flex align-items-center">
+                        <img src="../images/ion-cash.png"  class="ms-1" alt="cash icon">
+                        <h4>Cash</h4>
+                    </div>
+                    <h4>Passenger Notes</h4>
+                    <div class="passenger-notes"></div>
+
+                    <!-- buttons -->
+                    <div class="container d-flex buttons">
+                        <a class="btn btn-success" id="toggleStatus" href="../html/accepted.html">
+                            Accept
+                        </a>                
+                        <a class="btn btn-danger" id="toggleStatus" href="../html/searching.html">
+                            Decline
+                        </a>                
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="../js/status.js"></script>
+</body>
+</html>

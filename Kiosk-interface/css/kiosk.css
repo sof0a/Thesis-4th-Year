@@ -1,0 +1,123 @@
+html, body {
+    width: 100%;
+    height: 100vh;     
+    font-size: 15px;  
+    margin: 0;
+    padding: 0;
+}
+
+#kioskStatus{
+    margin-top: 0.5rem;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 2rem;
+    border: 0.2rem #79747E solid;
+    padding: 1rem 2rem;
+    border-radius: 5rem;
+}
+
+.status-indicator {
+    width: 1rem;
+    height: 1rem;
+    background-color: green;
+    border-radius: 5rem;
+    font-size: 0.8em;
+    margin: 0;
+}
+
+.status-text {
+    margin: 0px;
+    width: fit-content;
+    margin-left: 10px;
+}
+
+
+/* Sidebar */
+.contain-status, .contain-searching {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.contain-status .button{
+    position: absolute;
+    bottom: 5rem;
+    padding: 1.5rem 3rem;
+    border-radius: 5rem;
+    font-size: 1.5rem;
+    justify-content: center;
+    /* background-color: #0f3727; */
+}
+
+/* searching.html */
+.contain-searching a{
+    position: absolute;
+    top: 5rem;
+    align-self: start;
+    font-size: 3rem;
+    text-decoration: none;
+    color: #000;
+}
+
+/* found.html */
+.transaction-details{
+    position: relative;
+}
+
+.transaction-details .customer-details img{
+    width: 3rem; /* or any size you prefer */
+    height: auto; /* maintain aspect ratio */
+    padding-left: 0;
+    margin-right: 1rem;
+}
+
+.passenger-notes{
+    border: 0.2rem #79747E solid;
+    width: auto;
+    height: 10rem;
+    overflow: scroll;
+}
+    
+.transaction-details .buttons{
+    position: relative;
+    padding: 0;
+    justify-content: space-between;
+}
+
+.transaction-details .buttons a{
+    margin: 0;
+    margin-top: 5rem;
+    padding: 2rem 6rem;
+    border-radius: 5rem;
+    font-size: 1.5rem;
+    color: aliceblue;
+}
+
+/* accepted-confirmed.html/ */
+.contain-status a{
+    text-decoration: none;
+    color: #000;
+}
+
+.ride-details{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.passenger-details{
+    width: 100%;
+    justify-content: center;
+    gap: 5rem;
+}
+
+.passenger-details .passenger-notes{
+    width: 20rem;
+}
+
+
+
+
+
