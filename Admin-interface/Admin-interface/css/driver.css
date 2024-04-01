@@ -1,0 +1,60 @@
+.Dstatus{
+    display: flex;
+    align-items: center;
+}
+
+.driver-status-indicator {
+    width: 1rem;
+    height: 1rem;
+    background-color: green;
+    border-radius: 5rem;
+    font-size: 0.8em;
+    margin: 0;
+}
+
+tr td img{
+    width: 5rem; /* or any size you prefer */
+    height: auto; /* maintain aspect ratio */
+    padding-left: 0;
+}
+
+th, td{
+    vertical-align: middle
+}
+
+[data-href] { cursor: pointer; }
+
+td a { 
+    display: block; 
+    border: 1px solid black;
+    padding: 16px; 
+}
+
+
+
+
+/* Driver's Information.html */
+.driver-info{
+    justify-content: baseline;
+}
+
+.driver-info img{
+    width: 15rem; /* or any size you prefer */
+    height: auto; /* maintain aspect ratio */
+    padding-left: 0;
+}
+.infos{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.info{
+    display: flex;
+    gap: 2rem;
+}
+
+.info input{
+    width: 25ch;
+    font-size: 1.5rem;
+}

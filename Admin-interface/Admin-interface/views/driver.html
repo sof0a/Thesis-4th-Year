@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/driver.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/node_modules/jquery/dist/jquery.min.js"></script>
+    <script defer src="../js/bootstrap.bundle.js"></script>
+    
+    <title>Dashboard</title>
+    
+</head>
+<body>
+    <div class="container-fluid h-100">
+        <div class="row h-100 d-flex">
+            <!-- Sidebar -->
+            <div class="col-3 p-5 d-flex flex-column">
+                <h1 class="">Dashboard</h1>
+                <div class="row mt-5 tab">
+                    <img src="../images/user-icon.ico">
+                    <h5 class="m-0">Dashboard</h5>
+                </div>
+                <div class="row mt-4 tab active">
+                    <img src="../images/user-icon.ico" >
+                    <h5 class="m-0">Driver</h5>
+                </div>
+                <div class="row mt-4 tab">
+                    <img src="../images/settings.png">
+                    <h5 class="m-0">User</h5>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="col-9 content">
+                <h2 class="mt-5">Drivers</h2>
+
+                <!--  Table Section -->
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Driver ID</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Tricycle #</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Total Earnings</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="clickable-row" data-href="../views/driver-info.html">
+                        <th scope="row">1</th>
+                        <td>
+                            <img src="../images/driver-photo.jpg" alt="Driver's Photo">
+                        </td>
+                        <td>Mark Lawrence</td>
+                        <td>52366</td>
+                        <td>+639123456789</td>
+                        <td>P 234</td>
+                        <td>
+                            <div class="Dstatus">
+                                <div class="driver-status-indicator" id="status-indicator"></div>
+                                <div class="status-text">Online</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>
+                            <img src="../images/driver-photo.jpg" alt="Driver's Photo">
+                        </td>
+                        <td>Mark Lawrence</td>
+                        <td>52366</td>
+                        <td>+639123456789</td>
+                        <td>P 234</td>
+                        <td>
+                            <div class="Dstatus">
+                                <div class="driver-status-indicator" id="status-indicator"></div>
+                                <div class="status-text">Online</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>
+                            <img src="../images/driver-photo.jpg" alt="Driver's Photo">
+                        </td>
+                        <td>Mark Lawrence</td>
+                        <td>52366</td>
+                        <td>+639123456789</td>
+                        <td>P 234</td>
+                        <td>
+                            <div class="Dstatus">
+                                <div class="driver-status-indicator" id="status-indicator"></div>
+                                <div class="status-text">Online</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>
+                            <img src="../images/driver-photo.jpg" alt="Driver's Photo">
+                        </td>
+                        <td>Mark Lawrence</td>
+                        <td>52366</td>
+                        <td>+639123456789</td>
+                        <td>P 234</td>
+                        <td>
+                            <div class="Dstatus">
+                                <div class="driver-status-indicator" id="status-indicator"></div>
+                                <div class="status-text">Online</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>
+                            <img src="../images/driver-photo.jpg" alt="Driver's Photo">
+                        </td>
+                        <td>Mark Lawrence</td>
+                        <td>52366</td>
+                        <td>+639123456789</td>
+                        <td>P 234</td>
+                        <td>
+                            <div class="Dstatus">
+                                <div class="driver-status-indicator" id="status-indicator"></div>
+                                <div class="status-text">Online</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>
+                            <img src="../images/driver-photo.jpg" alt="Driver's Photo">
+                        </td>
+                        <td>Mark Lawrence</td>
+                        <td>52366</td>
+                        <td>+639123456789</td>
+                        <td>P 234</td>
+                        <td>
+                            <div class="Dstatus">
+                                <div class="driver-status-indicator" id="status-indicator"></div>
+                                <div class="status-text">Online</div>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        jQuery(document).ready(function($) {
+            $(".clickable-row").click(function() {
+                window.location = $(this).data("href");
+            });
+        });
+
+    </script>
+</body>
+</html>
