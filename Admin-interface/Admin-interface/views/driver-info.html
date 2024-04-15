@@ -17,24 +17,47 @@
     <div class="container-fluid h-100">
         <div class="row h-100 d-flex">
             <!-- Sidebar -->
-            <div class="col-3 p-5 d-flex flex-column">
-                <h1 class="">Dashboard</h1>
-                <div class="row mt-5 tab">
-                    <img src="../images/user-icon.ico">
-                    <h5 class="m-0">Dashboard</h5>
-                </div>
-                <div class="row mt-4 tab active">
-                    <img src="../images/user-icon.ico" >
+            <div class="col-3 p-5 d-flex flex-column sidenav">
+                <h1 class="">TrikGo</h1>
+                <a class="row mt-5 tab active" href="../views/home.html">
+                        <img src="../images/dashboard.png">
+                        <h5 class="m-0">Dashboard</h5>
+                </a>
+                <a class="row mt-4 tab" href="../views/driver.html">
+                    <img src="../images/driver-icon.png" >
                     <h5 class="m-0">Driver</h5>
-                </div>
-                <div class="row mt-4 tab">
-                    <img src="../images/settings.png">
-                    <h5 class="m-0">User</h5>
+                </a>
+                <a class="row mt-4 tab" href="../views/staff.html">
+                        <img src="../images/staff-icon.png">
+                        <h5 class="m-0">Staff</h5>
+                </a>
+                <a class="row mt-4 tab" href="../views/user.html">
+                        <img src="../images/user-icon.ico">
+                        <h5 class="m-0">User</h5>
+                </a>
+                <a class="row mt-4 tab" href="../views/analytics.html">
+                    <img src="../images/analytics-icon.png">
+                    <h5 class="m-0">Analytics</h5>
+                </a>
+                <a class="row mt-4 tab" href="../views/transactions.html">
+                    <img src="../images/transaction-icon.png">
+                    <h5 class="m-0">Transactions</h5>
+                </a>
+
+                <!-- <button class="btn btn-primary mt-5" id="toggleStatus"></button> -->
+                
+                <div class="container d-flex justify-content-between mt-5">
+                    <a class="row mt-4 settings mt-5" href="../views/user.html">
+                        <img src="../images/user-icon.ico">
+                    </a>
+                    <a class="row mt-4 settings mt-5" href="../views/logout.html">
+                        <img src="../images/logout-icon.png">
+                    </a>
                 </div>
             </div>
 
             <!-- Content -->
-            <div class="col-9">
+            <div class="col-9 content">
                 <div class="container">
                     <h2 class="mt-5">Driver Information</h2>
                     <h2>Driver Nickname, Age</h2>   

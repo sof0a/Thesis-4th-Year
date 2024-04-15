@@ -10,10 +10,11 @@
     border-radius: 5rem;
     font-size: 0.8em;
     margin: 0;
+    margin-right: 0.5rem;
 }
 
 tr td img{
-    width: 5rem; /* or any size you prefer */
+    width: 4rem; /* or any size you prefer */
     height: auto; /* maintain aspect ratio */
     padding-left: 0;
 }
@@ -29,8 +30,6 @@ td a {
     border: 1px solid black;
     padding: 16px; 
 }
-
-
 
 
 /* Driver's Information.html */
@@ -57,4 +56,10 @@ td a {
 .info input{
     width: 25ch;
     font-size: 1.5rem;
+}
+
+.content{
+    width: 90vw;
+    height: 100vh;
+    margin-left: 25%;
 }

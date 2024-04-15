@@ -31,14 +31,21 @@
 .content{
     width: 100vw;
     height: 100vh;
+    margin-left: 30%;
 }
 .content .container{
     width: 90%;
     margin: 0;
     margin-top: 3rem;
-    margin-left: 3rem;
 }
 
 .container .card{
     width: 30%;
+}
+
+.btn{
+    background-color: #f4bc13 !important;
+}
+.btn:hover{
+    background-color: #f4bc1389 !important;
 }

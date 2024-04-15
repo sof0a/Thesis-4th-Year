@@ -4,6 +4,7 @@ html, body {
     font-size: 15px;  
     margin: 0;
     padding: 0;
+    background-color: #ffffff;
 }
 #main-container {
     min-height: 100%;
@@ -12,8 +13,34 @@ html, body {
 [class*="col"] {
     padding: 1rem;
     /* background-color: #33b5e5; */
-    border: 0.2rem solid #fff;
+    /* border: 0.2rem solid #fff; */
     color: #000000;
+}
+
+.sidenav{
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    width: auto;
+}
+
+/* Logo */
+.sidenav .logo{
+    display: flex;
+}
+
+.sidenav .logo img{
+    width: 7rem; /* or any size you prefer */
+    height: auto;
+}
+
+.sidenav h1{
+    width: auto;
+    color: #f4bc13;
+    text-shadow: 3px 3px 83px rgba(66, 68, 90, 1);
+    align-self: center;
+    margin-bottom: 0;
+    font-size: 3rem;
 }
 
 .tab{
@@ -21,15 +48,12 @@ html, body {
     padding: 1rem;
     border-radius: 0.8rem;
     align-items: center;
+    text-decoration: none;
+    color: #000000;
 }
 
-.active{
-    background-color: #FEF9EB !important;
-    border-radius: 5rem;
-}
-
-.tab:hover{
-    background-color: #FEF9EB !important;
+.active, .tab:hover{
+    background-color: #f4bc1389 !important;
     border-radius: 5rem;
 }
 
@@ -43,3 +67,24 @@ html, body {
     width: fit-content;
     margin: 0 auto; /* Center the heading if desired */
 }
+
+/* Logout - Profile button */
+.settings{
+    padding: 1rem;
+    border-radius: 0.8rem;
+    align-items: center;
+    text-decoration: none;
+    width: auto;
+}
+
+.settings:hover{
+    background-color: #f4bc1389 !important;
+    border-radius: 5rem;
+}
+
+.settings img{
+    width: 3rem; /* or any size you prefer */
+    height: auto; /* maintain aspect ratio */
+    padding-left: 0;
+}
+
