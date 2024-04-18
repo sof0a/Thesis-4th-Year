@@ -12,25 +12,25 @@
         // Retrieve data passed from the controller
         var frequentPickupPoints = <?php echo json_encode($frequentPickupPoints); ?>;
 
-        // Sort pickupPoints and pickupCounts based on pickupCounts in descending order
-        var sortedData = frequentPickupPoints.sort((a, b) => b.pickup_count - a.pickup_count);
+        // Sort pickup points based on frequency (descending order)
+        frequentPickupPoints.sort((a, b) => b.pickup_count - a.pickup_count);
+
+        // Define an array of shades of yellow
+        // var colors = ['#fff176', '#ffee58', '#ffeb3b', '#fdd835', '#fbc02d']; // Brightest to darkest
+        var colors = ['#fbc02d', '#fdd835', '#ffeb3b', '#ffee58', '#fff176'];
 
         // Prepare data for Chart.js
-        var pickupPoints = sortedData.map(function(item) {
+        var pickupPoints = frequentPickupPoints.map(function(item) {
             return item.pickup_point;
         });
 
-        var pickupCounts = sortedData.map(function(item) {
+        var pickupCounts = frequentPickupPoints.map(function(item) {
             return item.pickup_count;
         });
 
-        // Define the color scale
-        var colorScale = chroma.scale(['#ffff00', '#ff0000']).mode('lab');
-
-        // Generate colors based on frequency
-        var backgroundColor = pickupCounts.map(function(count, index) {
-            var brightness = count / pickupCounts[0]; // Normalize the count to the range [0, 1]
-            return colorScale(brightness).hex();
+        // Assign colors to pickup points based on frequency
+        var backgroundColor = pickupCounts.map(function(_, index) {
+            return colors[index % colors.length]; // Cycle through colors if there are more pickup points than colors
         });
 
         // Create pie chart
@@ -49,14 +49,57 @@
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+                maintainAspectRatio: false
             }
         });
+
+
+
+
+
+
+
+
+
+
+
+
+        // // Retrieve data passed from the controller
+        // var frequentPickupPoints = <?php echo json_encode($frequentPickupPoints); ?>;
+
+        // // Prepare data for Chart.js
+        // var pickupPoints = frequentPickupPoints.map(function(item) {
+        //     return item.pickup_point;
+        // });
+
+        // var pickupCounts = frequentPickupPoints.map(function(item) {
+        //     return item.pickup_count;
+        // });
+
+        // // Create bar chart
+        // var ctx = document.getElementById('frequentPickPoints').getContext('2d');
+        // var frequentPickPoints = new Chart(ctx, {
+        //     type: 'pie',
+        //     data: {
+        //         labels: pickupPoints,
+        //         datasets: [{
+        //             label: 'Number of Occurrences',
+        //             data: pickupCounts,
+        //             backgroundColor: ['#f4bc1389', '#ffe08289', '#ffd54f89', '#ffca2889', '#ffb30089'],
+        //             borderColor: '#f4bc13',
+        //             hoverOffset: 4
+        //         }]
+        //     },
+        //     options: {
+        //         responsive: true,
+        //         maintainAspectRatio: false,
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     }
+        // });
     </script>
 </body>
 </html>

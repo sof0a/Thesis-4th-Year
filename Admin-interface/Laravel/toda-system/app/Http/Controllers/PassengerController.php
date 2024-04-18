@@ -11,7 +11,7 @@ class PassengerController extends Controller
     {
         // Logic to fetch and display all drivers
         $passengers = Passenger::all();
-        return view('passengers.index', ['passengers' => $passengers]);
+        return view('layouts.passengers', ['passengers' => $passengers]);
     }
 
     public function create()

@@ -25,10 +25,10 @@ th, td{
 
 [data-href] { cursor: pointer; }
 
-td a { 
-    display: block; 
+td a {
+    display: block;
     border: 1px solid black;
-    padding: 16px; 
+    padding: 16px;
 }
 
 
@@ -59,7 +59,7 @@ td a {
 }
 
 .content{
-    width: 90vw;
+    width: 100vw;
     height: 100vh;
-    margin-left: 25%;
+    margin-left: 25% !important;
 }

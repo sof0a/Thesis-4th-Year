@@ -4,9 +4,13 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\DriverController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PassengerController;
 use App\Models\Admin;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,14 +36,12 @@ Route::get('/dashboard', function () {
 });
 
 
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('layouts.dashboard');
+Route::get('/drivers', [DriverController::class, 'index'])->name('layouts.drivers');
+Route::get('/passengers', [PassengerController::class, 'index'])->name('layouts.passengers');
 Route::get('/analytics', [AnalyticsController::class, 'analytics'])->name('layouts.analytics');
-Route::get('/analytics/passengers-per-day', [AnalyticsController::class, 'passengersPerDay'])->name('analytics.passengers_per_day');
-Route::get('/analytics/toda_profit_per_day', [AnalyticsController::class, 'dailyTODAProfit'])->name('analytics.toda_profit_per_day');
+Route::get('/transactions', [TransactionController::class, 'index'])->name('layouts.transactions');
 
-Route::get('/analytics/passenger_graph', [TransactionController::class, 'index'])->name('analytics.passenger_graph');
-// Route::get('/analytics/passenger_graph/count', [TransactionController::class, 'countTransactions'])->name('analytics.passenger_graph');
-// Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
-// 'name of route',   [className, functionName]
 
 
 

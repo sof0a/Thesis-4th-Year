@@ -11,7 +11,7 @@ class DriverController extends Controller
     {
         // Logic to fetch and display all drivers
         $drivers = Driver::all();
-        return view('drivers.index', ['drivers' => $drivers]);
+        return view('layouts.drivers', ['drivers' => $drivers]);
     }
 
     public function create()

@@ -102,7 +102,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::gSXddaWOKOXNRbZQ',
+            '_route' => 'generated::rHpE7A1O73tNYJLB',
           ),
           1 => NULL,
           2 => 
@@ -122,7 +122,47 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::xYIjDvrKutn1cDfg',
+            '_route' => 'generated::mCQhXpcRYl94DWbV',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/drivers' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'layouts.drivers',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/passengers' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'layouts.passengers',
           ),
           1 => NULL,
           2 => 
@@ -156,53 +196,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/analytics/passengers-per-day' => 
+      '/transactions' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'analytics.passengers_per_day',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/analytics/toda_profit_per_day' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'analytics.toda_profit_per_day',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/analytics/passenger_graph' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'analytics.passenger_graph',
+            '_route' => 'layouts.transactions',
           ),
           1 => NULL,
           2 => 
@@ -373,7 +373,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::gSXddaWOKOXNRbZQ' => 
+    'generated::rHpE7A1O73tNYJLB' => 
     array (
       'methods' => 
       array (
@@ -396,7 +396,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::gSXddaWOKOXNRbZQ',
+        'as' => 'generated::rHpE7A1O73tNYJLB',
       ),
       'fallback' => false,
       'defaults' => 
@@ -412,7 +412,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::xYIjDvrKutn1cDfg' => 
+    'generated::mCQhXpcRYl94DWbV' => 
     array (
       'methods' => 
       array (
@@ -434,7 +434,81 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::xYIjDvrKutn1cDfg',
+        'as' => 'generated::mCQhXpcRYl94DWbV',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'layouts.drivers' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'drivers',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\DriverController@index',
+        'controller' => 'App\\Http\\Controllers\\DriverController@index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'layouts.drivers',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'layouts.passengers' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'passengers',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\PassengerController@index',
+        'controller' => 'App\\Http\\Controllers\\PassengerController@index',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'layouts.passengers',
       ),
       'fallback' => false,
       'defaults' => 
@@ -487,88 +561,14 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'analytics.passengers_per_day' => 
+    'layouts.transactions' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'analytics/passengers-per-day',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-        ),
-        'uses' => 'App\\Http\\Controllers\\AnalyticsController@passengersPerDay',
-        'controller' => 'App\\Http\\Controllers\\AnalyticsController@passengersPerDay',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-        'as' => 'analytics.passengers_per_day',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'analytics.toda_profit_per_day' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'analytics/toda_profit_per_day',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-        ),
-        'uses' => 'App\\Http\\Controllers\\AnalyticsController@dailyTODAProfit',
-        'controller' => 'App\\Http\\Controllers\\AnalyticsController@dailyTODAProfit',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-        'as' => 'analytics.toda_profit_per_day',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'analytics.passenger_graph' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'analytics/passenger_graph',
+      'uri' => 'transactions',
       'action' => 
       array (
         'middleware' => 
@@ -582,7 +582,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'analytics.passenger_graph',
+        'as' => 'layouts.transactions',
       ),
       'fallback' => false,
       'defaults' => 
