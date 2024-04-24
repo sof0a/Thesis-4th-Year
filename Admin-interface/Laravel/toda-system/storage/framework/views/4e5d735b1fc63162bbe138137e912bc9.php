@@ -22,7 +22,7 @@
             <!-- Content -->
             <div class="col-9 content">
                 <h2 class="mt-5 fw-bold">Drivers</h2>
-
+                <a class="btn" href="<?php echo e(route('drivers.create')); ?>">Add</a>
                 <!--  Table Section -->
                 <table class="table table-hover mt-5">
                     <thead>
@@ -51,8 +51,13 @@
                             <td><?php echo e($driver->model); ?></td>
                             <td><?php echo e($driver->plate_number); ?></td>
                             <td>
-                                <a href="<?php echo e(route('drivers.edit', $driver->id)); ?>">Edit</a>
                                 <a href="<?php echo e(route('drivers.show', $driver->id)); ?>">View</a>
+                                <a href="<?php echo e(route('drivers.edit', $driver->id)); ?>">Edit</a>
+                                <form method="POST" action="<?php echo e(route('drivers.delete', $driver->id)); ?>">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('DELETE'); ?>
+                                    <button type="submit">Delete</button>
+                                </form>
                             </td>
                             
                         </tr>

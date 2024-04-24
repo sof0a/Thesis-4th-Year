@@ -28,7 +28,6 @@
                     <img class="me-5" src="../images/driver-photo.jpg" alt="">
                     <div class="infos">
                         <div class="info m-0">
-                            <h2><?php echo e($driver->name); ?></h2>
                             <input  type="text" name="fName" id="" placeholder="First Name" value="<?php echo e($driver->name); ?>">
                             <input type="text" name="lName" id="" placeholder="Last Name" value="">
                             <input type="text" name="mName" id="" placeholder="Middle Name" value="">

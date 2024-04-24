@@ -7,6 +7,7 @@
     <title>Update User</title>
 </head>
 <body>
+    
     <form method="POST" action="<?php echo e(route('drivers.update', $driver->id)); ?>">
         <?php echo csrf_field(); ?>
         <?php echo method_field('PUT'); ?>

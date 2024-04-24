@@ -10,9 +10,11 @@
     <form method="POST" action="<?php echo e(route('drivers.store')); ?>">
         <?php echo csrf_field(); ?>
         <!-- Input fields for driver data -->
-        <input type="text" name="name" placeholder="Name">
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
+        <input type="text" name="name" placeholder="Enter driver's name">
+        <input type="text" name="license_number" placeholder="Enter license number">
+        <input type="text" name="contact_number" placeholder="Enter contact number">
+        <input type="text" name="model" placeholder="Enter vehicle model">
+        <input type="text" name="plate_number" placeholder="Enter plate number">
         <!-- Submit button -->
         <button type="submit">Create User</button>
     </form>
