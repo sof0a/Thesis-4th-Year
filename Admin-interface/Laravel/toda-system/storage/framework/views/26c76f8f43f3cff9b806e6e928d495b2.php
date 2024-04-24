@@ -1,0 +1,1 @@
+<?php /**PATH C:\xampp\htdocs\Laravel\toda-system\resources\views\transactions\create.blade.php ENDPATH**/ ?>
