@@ -1,0 +1,38 @@
+.content{
+    width: 100vw;
+    height: 100vh;
+    margin-left: 25% !important;
+}
+.content .container{
+    margin: 0;
+    margin-top: 3rem;
+}
+
+.head-title{
+    margin-top: 3rem;
+    font-weight: 700;
+}
+
+.chart{
+    height: 30rem;
+    padding: 2rem;
+    padding-bottom: 5rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 2rem;
+}
+
+.chart .header{
+    margin-top: 0 !important;
+}
+
+.custom-table thead tr th{
+    background-color: #f4bc1389 !important;
+    font-weight: 500;
+    padding: 1rem;
+}
+.custom-table thead tr .th1{
+    border-top-left-radius: 1.5rem;
+}
+.custom-table thead tr .th2{
+    border-top-right-radius: 1.5rem;
+}

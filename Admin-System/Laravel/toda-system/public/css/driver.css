@@ -1,0 +1,192 @@
+html, body{
+    font-size: 15px;
+}
+
+
+.Dstatus{
+    display: flex;
+    align-items: center;
+}
+
+.driver-status-indicator {
+    width: 1rem;
+    height: 1rem;
+    background-color: green;
+    border-radius: 5rem;
+    font-size: 0.8em;
+    margin: 0;
+    margin-right: 0.5rem;
+}
+
+tr td img{
+    width: 3rem; /* or any size you prefer */
+    height: auto; /* maintain aspect ratio */
+    padding-left: 0;
+}
+
+th, td{
+    vertical-align: middle
+}
+
+[data-href] { cursor: pointer; }
+
+td a {
+    display: block;
+    margin-right: 0.5rem;
+    /* border: 1px solid black;
+    padding: 16px; */
+}
+
+
+/* Driver's Information.html */
+.driver-info{
+    justify-content: baseline;
+    width: auto;
+}
+
+.driver-info img{
+    min-width: 10rem;
+    max-width: 15rem; /* or any size you prefer */
+    height: auto; /* maintain aspect ratio */
+    padding-left: 0;
+}
+.infos{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.info{
+    display: flex;
+    gap: 2rem;
+}
+
+.info input{
+    min-width: 10ch;
+    max-width: 18ch;
+    font-size: 1.5rem;
+}
+
+.content{
+    width: 100vw;
+    height: 100vh;
+    margin-left: 25% !important;
+    position: relative;
+}
+.content-create{
+    width: 100%;
+    height: 100vh;
+    margin-left: 25% !important;
+    position: relative;
+}
+
+.table-container {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.table-container table {
+    width: 100%;
+}
+
+table{
+    width: auto;
+}
+
+.table-container thead th {
+    position: sticky;
+    top: 0; /* Stick the header to the top */
+    background-color: #fff; /* Optional: Background color for header */
+    z-index: 1; /* Ensure the header stays above the table content */
+}
+
+.table-container tbody td {
+    padding: 0.5rem; /* Add padding for better readability */
+}
+
+.btn {
+    width: 20%;
+    position: absolute;
+    right: 8.5%;
+    border-radius: 0.8em;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.btn .analytics{
+    width: auto;
+    border-radius: 0.8em;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+tr #btn-action{
+    display: flex;
+    width: fit-content;
+}
+
+/* .btn-delete{
+    width: auto !important;
+} */
+
+.content .container .buttons{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.container2-btn{
+    width: auto;
+    position: absolute;
+    right: 10%;
+}
+.container2-btn a, form{
+    width: 10rem;
+    /* height: 3rem; */
+    position: relative;
+    border: 0;
+    border-radius: 0.8rem;
+    /* background-color: #666014; */
+}
+
+.buttons a{
+    border-radius: 0.5rem;
+    background-color: #fff;
+}
+
+.btn-back{
+    object-fit: contain;
+    transform: scaleX(-1);
+    width: 3rem;
+    height: auto;
+    margin-top: 4rem;
+    /* filter: invert(100%) brightness(0) sepia(100%) hue-rotate(180deg); */
+}
+
+.add, button.btn[type="submit"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center;
+    background-color: #666014 !important;
+    font-size: 1.3rem !important;
+    font-weight: 600 !important;
+    height: 3rem;
+}
+
+button.btn[type="submit"] {
+    right: 2%;
+    display: inline !important;
+    background-color: #f9db80 !important;
+}
+button.update[type="submit"] {
+    right: 12% !important;
+}
+
+.btn-primary:hover{
+    background-color: #f4bc13 !important;
+}
+
+.chart .header{
+    margin-top: 0 !important;
+    align-items: center;
+    justify-content: center;
+}
+
