@@ -9,7 +9,9 @@
 }
 
 .head-title{
-    margin-top: 3rem;
+    align-self: center !important;
+    /* margin-top: 3rem; */
+    margin-bottom: 0;
     font-weight: 700;
 }
 
@@ -23,6 +25,7 @@
 
 .chart .header{
     margin-top: 0 !important;
+    position: relative;
 }
 
 .custom-table thead tr th{
@@ -36,3 +39,60 @@
 .custom-table thead tr .th2{
     border-top-right-radius: 1.5rem;
 }
+
+#customRangeFilterContainer {
+    /* display: none; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+button .select{
+    align-self: center !important;
+    margin-top: 0px !important; margin-left: 5px !important;
+}
+
+
+
+/* #customRangeFilterContainer {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 9999;
+} */
+
+#customRangeFilterContainer label {
+    margin-right: 10px;
+}
+
+#customRangeFilterContainer input[type="date"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#customRangeFilterContainer button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#customRangeFilterContainer button:hover {
+    background-color: #0056b3;
+}
+
+

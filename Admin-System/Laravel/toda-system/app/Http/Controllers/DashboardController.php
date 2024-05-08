@@ -24,7 +24,7 @@ class DashboardController extends Controller
         $totalAdmins = Admin::count();
 
         // Retrieve data for passengers per day
-        $passengersPerDay = Transaction::selectRaw('CONCAT(drivers.first_name, " ", drivers.middle_name, " ", drivers.last_name) AS DriverName, DATE(transactions.date) AS TransactionDate, COUNT(*) AS PassengerCount')
+        $passengersPerPeriod = Transaction::selectRaw('CONCAT(drivers.first_name, " ", drivers.middle_name, " ", drivers.last_name) AS DriverName, DATE(transactions.date) AS TransactionDate, COUNT(*) AS PassengerCount')
         ->join('drivers', 'transactions.driver_id', '=', 'drivers.id')
         ->groupBy('DriverName', 'TransactionDate')
         ->get();
@@ -42,7 +42,7 @@ class DashboardController extends Controller
             'totalUsers',
             'totalTrips',
             'totalAdmins',
-            'passengersPerDay',
+            'passengersPerPeriod',
             'frequentPickupPoints'
         ));
     }

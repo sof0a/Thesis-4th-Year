@@ -83,7 +83,7 @@
                                     <img class="btn-icon"  src="{{ asset('images/right-icon.png') }}">
                                 </a>
                             </div>
-                            @include('analytics.passengers_per_day', ['passengersPerDay' => $passengersPerDay])
+                            @include('analytics.passengers_per_day', ['passengersPerPeriod' => $passengersPerPeriod])
                         </div>
                     </div>
                     <div class="col-4">

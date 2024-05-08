@@ -6,33 +6,33 @@
     <script src="{{ asset('../node_modules/chart.js/dist/chart.umd.js')}}"></script>
 </head>
 <body>
-    <canvas id="passengersPerDayChart"></canvas>
+    <canvas id="passengerPerMonthChart"></canvas>
 
     <script>
         // Retrieve data passed from the controller
-        var passengersPerPeriod = {!! json_encode($passengersPerPeriod) !!};
+        var passengersPerMonth = {!! json_encode($passengersPerMonth) !!};
 
         // Prepare data for Chart.js
-        var driverNames = passengersPerPeriod.map(function(item) {
+        var driverNames = passengersPerMonth.map(function(item) {
             return item.DriverName;
         });
 
-        var transactionDates = passengersPerPeriod.map(function(item) {
+        var transactionDates = passengersPerMonth.map(function(item) {
             return item.TransactionDate;
         });
 
-        var passengerCounts = passengersPerPeriod.map(function(item) {
+        var passengerCounts = passengersPerMonth.map(function(item) {
             return item.PassengerCount;
         });
 
         // Create bar chart
-        var ctx = document.getElementById('passengersPerDayChart').getContext('2d');
-        var passengersPerDayChart = new Chart(ctx, {
+        var ctx = document.getElementById('passengerPerMonthChart').getContext('2d');
+        var passengerPerMonthChart = new Chart(ctx, {   
             type: 'bar',
             data: {
                 labels: driverNames,
                 datasets: [{
-                    label: 'No. Passenger',
+                    label: 'Passengers per Month',
                     data: passengerCounts,
                     backgroundColor: [ '#d2c972' ],
                     borderColor: ['#f4bc13'],

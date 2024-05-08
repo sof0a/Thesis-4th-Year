@@ -21,7 +21,20 @@
 
             <!-- Content -->
             <div class="col-9 content">
-                <h1 class="head-title">Analytics</h1>
+                <div class="container d-flex justify-content-between">
+                    <h1 class="head-title align-self-center">Analytics</h1>
+                    <form method="GET" action="{{ route('layouts.analytics') }}" class="w-40 d-flex">
+                        <h4 class="mt-2"><strong>Filter:</strong></h4>&nbsp;&nbsp;
+                        <select class="form-select" name="filter" onchange="toggleCustomRangeFilter(this)">
+                            @foreach ($filterOptions as $key => $value)
+                                <option value="{{ $key }}" {{ $key == $filter ? 'selected' : '' }}>{{ $value }}</option>
+                            @endforeach
+                        </select>
+                        <button class="btn select w-50" type="submit" style="margin-top: 0px !important; margin-left: 5px !important;">
+                            Apply
+                        </button>
+                    </form>
+                </div>
                 <!-- graphs -->
                 <div class="container d-flex ">
                     <div class="row w-100">
@@ -29,17 +42,55 @@
                             <div class="chart me-3">
                                 <div class="container d-flex justify-content-between header" style="width: auto">
                                     <h2>Passengers</h2>
-                                    <h2>Daily</h2>
+                                    {{-- <form method="GET" action="{{ route('layouts.analytics') }}" class="d-flex align-items-center">
+                                        <select class="form-select" name="filter" onchange="toggleCustomRangeFilter(this)">
+                                            @foreach ($filterOptions as $key => $value)
+                                                <option value="{{ $key }}" {{ $key == $filter ? 'selected' : '' }}>{{ $value }}</option>
+                                            @endforeach
+                                        </select>
+                                        <button class="btn select" type="submit" style="margin-top: 0px !important; margin-left: 5px !important;">
+                                            Apply
+                                        </button>
+                                    </form> --}}
+
+                                    <!-- Container for custom range date filter -->
+                                    {{-- <div id="customRangeFilterContainer" class="container d-flex mt-2" style="display: none;">
+                                        <form method="GET" action="{{ route('layouts.analytics') }}">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="start_date">Start Date:</label>
+                                                    <input type="date" id="start_date" name="start_date">
+                                                </div>
+                                                <div class="col">
+                                                    <label for="end_date">End Date:</label>
+                                                    <input type="date" id="end_date" name="end_date">
+                                                </div>
+                                            </div>
+                                            <button type="submit">Apply</button>
+                                        </form>
+                                    </div> --}}
                                 </div>
+
+
+
                                 {{-- <canvas id="barChart"></canvas> --}}
-                                @include('analytics.passengers_per_day', ['passengersPerDay' => $passengersPerDay])
+                                @include('analytics.passengers_per_day', ['passengersPerPeriod' => $passengersPerPeriod])
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="chart lineChartContainer">
                                 <div class="container d-flex justify-content-center header" style="width: auto">
                                     <h2>Frequent Places</h2>
-                                    <h2></h2>
+                                    {{-- <form method="GET" action="{{ route('layouts.analytics') }}" class="d-flex align-items-center">
+                                        <select class="form-select" name="filter" onchange="toggleCustomRangeFilter(this)">
+                                            @foreach ($filterOptions as $key => $value)
+                                                <option value="{{ $key }}" {{ $key == $filter ? 'selected' : '' }}>{{ $value }}</option>
+                                            @endforeach
+                                        </select>
+                                        <button class="btn select" type="submit" style="margin-top: 0px !important; margin-left: 5px !important;">
+                                            Apply
+                                        </button>
+                                    </form> --}}
                                 </div>
                                 {{-- <canvas id="lineChart"></canvas> --}}
                                 @include('analytics.frequent_pickup_point', ['frequentPickupPoints' => $frequentPickupPoints])
@@ -75,7 +126,16 @@
                             <div class="chart lineChartContainer">
                                 <div class="container d-flex justify-content-between header" style="width: auto">
                                     <h2>TODA Profit</h2>
-                                    <h2>Daily</h2>
+                                    {{-- <form method="GET" action="{{ route('layouts.analytics') }}" class="d-flex align-items-center">
+                                        <select class="form-select" name="filter" onchange="toggleCustomRangeFilter(this)">
+                                            @foreach ($filterOptions as $key => $value)
+                                                <option value="{{ $key }}" {{ $key == $filter ? 'selected' : '' }}>{{ $value }}</option>
+                                            @endforeach
+                                        </select>
+                                        <button class="btn select" type="submit" style="margin-top: 0px !important; margin-left: 5px !important;">
+                                            Apply
+                                        </button>
+                                    </form> --}}
                                 </div>
                                 {{-- <canvas id="barChart2"></canvas> --}}
                                 {{-- @include('analytics.frequent_pickup_point', ['frequentPickupPoints' => $frequentPickupPoints]) --}}
@@ -93,5 +153,15 @@
     <script src="{{ asset('../node_modules/chart.js/dist/chart.umd.js')}}"></script>
     <script src="{{ asset('js/chart1.js ')}}"></script>
     <script src="{{ asset('js/lineGraph.js ')}} "></script>
+    <script>
+        function toggleCustomRangeFilter(select) {
+            var customRangeFilterContainer = document.getElementById('customRangeFilterContainer');
+            if (select.value === 'custom') {
+                customRangeFilterContainer.style.display = 'flex'; // Show the container
+            } else {
+                customRangeFilterContainer.style.display = 'none'; // Hide the container
+            }
+        }
+    </script>
 </body>
 </html>
