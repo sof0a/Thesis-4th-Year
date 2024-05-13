@@ -12,13 +12,19 @@ class Driver extends Model
     protected $table = 'drivers';
 
     protected $fillable = [
+        'rfid',
+        'image',
         'first_name',
         'last_name',
         'middle_name',
         'contact_number',
         'license_number',
         'model',
-        'plate_number'
+        'plate_number',
+        'toda_commission',
+        'toda_paid',
+        'toda_balance',
+        'toda_payment_status',
     ];
 
     public function transactions()

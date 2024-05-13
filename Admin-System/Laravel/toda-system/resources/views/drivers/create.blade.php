@@ -20,7 +20,8 @@
             @include('layouts.sidebar', ['activeLink' => 'drivers'])
 
             <!-- Content -->
-            <form method="POST" action="{{ route('drivers.store') }}">
+            {{-- ADD enctype="multipart/form-data" --}}
+            <form method="POST" action="{{ route('drivers.store') }}" >
                 <div class="col-8 content-create">
                     <a href="{{ route('layouts.drivers')}}" class="btn-back">
                         <img class="btn-back"  src="{{ asset('images/right-arrow.png') }}">
@@ -31,6 +32,8 @@
                     </div>
                     <div class="driver-info container d-flex align-items-center mt-5 mb-5">
                         <img class="me-5" src="../images/driver-photo.jpg" alt="">
+                        {{-- <input type="file" name="image" accept="image/*"> --}}
+
                         <div class="infos">
                             <div class="info m-0">
                                 @csrf
@@ -40,7 +43,7 @@
                             </div>
                             <div class="info mt-5">
                                 @csrf
-                                {{-- <input type="date" name="bDay" id="" placeholder="Date of Birth" value=""> --}}
+                                <input type="text" name="rfid" id="" placeholder="RFID">
                                 <input type="tel" name="contact_number" id="" placeholder="Contact Number" value="">
                                 <input type="text" name="license_number" id="" placeholder="License Number" value="">
                             </div>

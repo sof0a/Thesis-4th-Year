@@ -38,10 +38,29 @@
             <img src="{{ asset('images/analytics-icon.png' )}}">
             <h5 class="m-0">Analytics</h5>
         </a>
-        <a class="row mt-4 tab {{ $activeLink === 'transactions' ? 'active' : '' }}" href="/transactions">
+        {{-- <a class="row mt-4 tab {{ $activeLink === 'transactions' ? 'active' : '' }}">
             <img src="{{ asset('images/transaction-icon.png ') }}">
             <h5 class="m-0">Transactions</h5>
-        </a>
+        </a> --}}
+
+
+        <li class="" style="list-style: none">
+            <a class="row mt-4 tab" href="" id="navbarDropdownMenuLink"
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="{{ asset('images/transaction-icon.png') }}">
+                <h5 class="m-0">Transaction</h5>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item {{ $activeLink === 'driver' ? 'active' : '' }}" href="/transactions/drivers">Driver</a>
+                <a class="dropdown-item {{ $activeLink === 'passenger' ? 'active' : '' }}" href="/transactions/passengers">Passenger</a>
+            </div>
+        </li>
+
+
+        {{-- <a class="row mt-4 tab {{ $activeLink === 'transactions' ? 'active' : '' }}" href="/transactions">
+            <img src="{{ asset('images/transaction-icon.png ') }}">
+            <h5 class="m-0">Transactions</h5>
+        </a> --}}
 
         <!-- <button class="btn btn-primary mt-5" id="toggleStatus"></button> -->
 
@@ -54,5 +73,11 @@
             </a>
         </div>
     </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js   "
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
 </body>
 </html>

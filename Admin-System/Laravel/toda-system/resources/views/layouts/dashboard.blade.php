@@ -56,7 +56,7 @@
                             </div>
                             <img class="icon" src="{{ asset('images/trips-icon.png') }}">
                         </div>
-                        <a href="{{ route('layouts.transactions')}}" class="btn moreInfo">More info</a>
+                        <a href="{{ route('transactions.driver')}}" class="btn moreInfo">More info</a>
                     </div>
                     <div class="card">
                         <div class="card-body">

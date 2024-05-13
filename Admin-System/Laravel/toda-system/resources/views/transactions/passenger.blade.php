@@ -10,14 +10,14 @@
     <script defer src="{{ asset('js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('../node_modules/chart.js/dist/chart.umd.js')}}"></script>
 
-    <title>Transactions</title>
+    <title>Passenger Transactions</title>
 
 </head>
 <body>
     <div class="container-fluid h-100">
         <div class="row h-100 d-flex">
             <!-- Sidebar -->
-            @include('layouts.sidebar', ['activeLink' => 'transactions'])
+            @include('layouts.sidebar', ['activeLink' => 'passenger'])
 
             <!-- Content -->
             <div class="col-9 content">
@@ -31,7 +31,7 @@
                             <th scope="col">Passenger Name</th>
                             <th scope="col">Total Trips</th>
                             <th scope="col">Passenger Contact Number</th>
-                            <th scope="col">Transaction Details</th>
+                            {{-- <th scope="col">Transaction Details</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -41,7 +41,7 @@
                             <td>{{ $transaction->name }}</td>
                             <td>{{ $transaction->total_trips }}</td>
                             <td>{{ $transaction->contact_number }}</td>
-                            <td><a href="{{ route('transactions.details', ['id' => $transaction->passenger_id]) }}">View Details</a></td>
+                            {{-- <td><a href="{{ route('transactions.details', ['id' => $transaction->passenger_id]) }}">View Details</a></td> --}}
                         </tr>
                         @endforeach
                     </tbody>

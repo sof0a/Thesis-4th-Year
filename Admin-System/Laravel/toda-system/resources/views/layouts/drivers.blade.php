@@ -27,7 +27,7 @@
                     <table class="table table-hover mt-5">
                         <thead>
                             <tr>
-                                <th scope="col">Driver ID</th>
+                                <th scope="col">RFID</th>
                                 <th scope="col">Photo</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">License #</th>
@@ -41,7 +41,7 @@
                         <tbody>
                             @foreach($drivers as $driver)
                             <tr>
-                                <th scope="row">{{ $driver->id }}</th>
+                                <th scope="row">{{ $driver->rfid }}</th>
                                 <td>
                                     <img src="{{ $driver->photo }}" alt="Driver's Photo">
                                 </td>
@@ -64,10 +64,13 @@
                                         <img src="{{ asset('images/edit-icon.png') }}" title="Edit">
                                     </a>
                                     {{-- <form method="POST" action="{{ route('drivers.delete', $driver->id) }}"> --}}
-                                    <form method="POST" class="btn-delete">
+                                    <form method="POST" class="btn-delete" action="{{ route('drivers.delete', $driver->id) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                                        {{-- <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                                            <img src="{{ asset('images/delete-icon.png') }}" title="Delete">
+                                        </a> --}}
+                                        <a href="#" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this driver?')) { this.closest('form').submit(); }">
                                             <img src="{{ asset('images/delete-icon.png') }}" title="Delete">
                                         </a>
                                     </form>

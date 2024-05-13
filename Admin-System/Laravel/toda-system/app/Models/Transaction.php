@@ -23,4 +23,10 @@ class Transaction extends Model
         return $this->belongsTo(Passenger::class);
     }
 
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+
 }

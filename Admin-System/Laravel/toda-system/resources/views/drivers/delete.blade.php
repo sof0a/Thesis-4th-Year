@@ -8,12 +8,12 @@
 </head>
 <body>
     <!-- resources/views/users/delete.blade.php -->
-    <form method="POST" action="{{ route('users.destroy', $user->id) }}">
+    <form method="POST" action="{{ route('driver.delete', $driver->id) }}">
         @csrf
         @method('DELETE')
         <p>Are you sure you want to delete this user?</p>
-        <button type="submit">Delete User</button>
-    </form> 
+        <button type="submit">Delete Driver</button>
+    </form>
 
 </body>
 </html>

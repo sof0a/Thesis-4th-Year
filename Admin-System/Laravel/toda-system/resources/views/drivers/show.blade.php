@@ -30,13 +30,24 @@
                 <div class="driver-info container d-flex align-items-center mt-5 mb-5">
                     <img class="me-5" src="../images/driver-photo.jpg" alt="">
                     <div class="infos">
+                        <div class="info-label">
+                            <label for="fName">First Name</label>
+                            <label for="lName">Last Name</label>
+                            <label for="mName">Middle Name</label>
+                        </div>
                         <div class="info m-0">
                             <input  type="text" name="fName" id="" placeholder="First Name" value="{{ $driver->first_name }}">
                             <input type="text" name="lName" id="" placeholder="Last Name" value="{{ $driver->last_name }}">
                             <input type="text" name="mName" id="" placeholder="Middle Name" value="{{ $driver->middle_name }}">
                         </div>
-                        <div class="info mt-5">
-                            <input type="date" name="bDay" id="" placeholder="Date of Birth" value="">
+                        <div class="info-label label2 mt-5">
+                            <label for="rfid">RFID</label>
+                            <label for="contactNumber">Contact Number</label>
+                            <label class="label-lNum" for="licenseNumber">License Number</label>
+                        </div>
+                        <div class="info">
+                            {{-- <input type="date" name="bDay" id="" placeholder="Date of Birth" value=""> --}}
+                            <input type="text" name="rfid" id="" placeholder="RFID" value="{{ $driver->rfid }}">
                             <input type="tel" name="contactNumber" id="" placeholder="Contact Number" value="{{ $driver->contact_number }}">
                             <input type="text" name="licenseNumber" id="" placeholder="Driver's License" value="{{ $driver->license_number }}">
                         </div>
@@ -47,6 +58,10 @@
                     <h2>Vehicle Information</h2>
                 </div>
                 <div class="infos container mt-4">
+                    <div class="info-label label3">
+                        <label for="modelName">Model Name</label>
+                        <label for="plateNumber">Plate Number</label>
+                    </div>
                     <div class="info m-0">
                         <input  type="text" name="modelName" id="" placeholder="Model" value="{{ $driver->model }}">
                         {{-- <input type="text" name="vehicleColor" id="" placeholder="Vehicle Color" value=""> --}}

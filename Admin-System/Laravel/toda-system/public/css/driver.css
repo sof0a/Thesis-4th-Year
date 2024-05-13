@@ -190,3 +190,41 @@ button.update[type="submit"] {
     justify-content: center;
 }
 
+
+
+
+/* show */
+.info-label{
+    display: flex;
+    position: relative;
+    gap: 12rem;
+}
+.label2{
+    gap: 14.5rem;
+}
+.label3{
+    gap: 11rem;
+}
+
+.info-label label{
+    color: #525252;
+}
+
+.label-lNum{
+    position: absolute;
+    right: 7.5rem;
+}
+
+
+
+/* transaction.driver */
+.th{
+    text-align: center;
+}
+
+.subheader th{
+    text-align: center;
+}
+
+
+

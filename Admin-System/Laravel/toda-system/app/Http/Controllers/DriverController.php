@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Driver;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Hash;
 
 class DriverController extends Controller
@@ -30,6 +31,8 @@ class DriverController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'rfid' => 'required|string|max:50',
+            // 'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
@@ -39,16 +42,25 @@ class DriverController extends Controller
             'plate_number' => 'required|string|max:10',
         ]);
 
-        // $post = new Driver();
-        // $post->first_name = $request->fName;
-        // $post->last_name = $request->lName;
-        // $post->middle_name = $request->mName;
-        // $post->contact_number = $request->contactNum;
-        // $post->license_number = $request->licenseNum;
-        // $post->model = $request->model;
-        // $post->plate_number = $request->plateNum;
-        // $post->save();
+        // Handle file upload
+        // if ($request->hasFile('image')) {
+        //     // Get file name with extension
+        //     $filenameWithExt = $request->file('image')->getClientOriginalName();
+        //     // Get just filename
+        //     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        //     // Get just extension
+        //     $extension = $request->file('image')->getClientOriginalExtension();
+        //     // Filename to store
+        //     $fileNameToStore = $filename.'_'.time().'.'.$extension;
+        //     // Upload image
+        //     $path = $request->file('image')->storeAs('public/images/driver', $fileNameToStore);
+        // } else {
+        //     $fileNameToStore = 'noimage.jpg'; // Default image if no image is uploaded
+        // }
+
         $post = new Driver();
+        $post->rfid = $request->rfid;
+        // $post->image = $request->image;
         $post->first_name = $request->first_name;
         $post->last_name = $request->last_name;
         $post->middle_name = $request->middle_name;
@@ -77,6 +89,7 @@ class DriverController extends Controller
 
         // Validate the request data
         $validatedData = $request->validate([
+            'rfid' => 'required|string|max:50',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
@@ -96,8 +109,11 @@ class DriverController extends Controller
         return redirect()->route('layouts.drivers')->with('success', 'Driver updated successfully');
     }
 
-    public function destroy(Driver $id)
+    public function delete(Driver $id)
     {
+         // Delete related transactions
+        // Transaction::where('driver_id', $id->id)->delete();
+
         // Delete driver record
         $id->delete();
 

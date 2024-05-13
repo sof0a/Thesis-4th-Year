@@ -29,9 +29,15 @@
         });
 
         // Assign colors to pickup points based on frequency
-        var backgroundColor = pickupCounts.map(function(_, index) {
-            return colors[index % colors.length]; // Cycle through colors if there are more pickup points than colors
-        });
+        // var backgroundColor = pickupCounts.map(function(_, index) {
+        //     return colors[index % colors.length]; // Cycle through colors if there are more pickup points than colors
+        // });
+
+        var backgroundColor = [];
+        for (var i = 0; i < pickupPoints.length; i++) {
+            var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16); // Generate a random hexadecimal color
+            backgroundColor.push(randomColor);
+        }
 
         // Create pie chart
         var ctx = document.getElementById('frequentPickPoints').getContext('2d');
@@ -43,7 +49,7 @@
                     label: 'Number of Occurrences',
                     data: pickupCounts,
                     backgroundColor: backgroundColor,
-                    borderColor: '#d2c972',
+                    // borderColor: '#d2c972',
                     hoverOffset: 4
                 }]
             },

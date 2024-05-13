@@ -21,27 +21,34 @@
 
             <!-- Content -->
             <div class="col-9 content">
-                <h2 class="mt-5 fw-bold">Passenger Transactions</h2>
+                <h2 class="mt-5 fw-bold">Transactions</h2>
 
                 <!--  Table Section -->
                 <table class="table table-hover mt-5">
                     <thead>
                         <tr>
-                            <th scope="col">Passenger ID</th>
-                            <th scope="col">Passenger Name</th>
-                            <th scope="col">Total Trips</th>
-                            <th scope="col">Passenger Contact Number</th>
-                            <th scope="col">Transaction Details</th>
+                            <th scope="col">Transaction ID</th>
+                            <th scope="col">Pickup Point</th>
+                            <th scope="col">Dropoff Point</th>
+                            <th scope="col">Fare Amount</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($passengerTransactions  as $transaction)
+                        @foreach($transactions as $transaction)
                         <tr>
-                            <td>{{ $transaction->passenger_id }}</td>
-                            <td>{{ $transaction->name }}</td>
-                            <td>{{ $transaction->total_trips }}</td>
-                            <td>{{ $transaction->contact_number }}</td>
-                            <td><a href="{{ route('transactions.details', ['id' => $transaction->passenger_id]) }}">View Details</a></td>
+                            <th scope="row">{{ $transaction->transaction_id }}</th>
+                            <td>{{ $transaction->pickup_point }}</td>
+                            <td>{{ $transaction->dropoff_point }}</td>
+                            <td>{{ $transaction->fare_amount }}</td>
+                            <td>{{ $transaction->date }}</td>
+                            <td>
+                                <div class="Dstatus">
+                                    <div class="driver-status-indicator" id="status-indicator"></div>
+                                    <div class="status-text">{{ $transaction->status }}</div>
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

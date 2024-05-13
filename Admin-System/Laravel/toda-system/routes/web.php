@@ -11,6 +11,7 @@ use App\Models\Admin;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,20 +24,19 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('layouts.dashboard');
 // Route::get('/', function () {
-//     return view('dashboard');
+//     return view('layouts.index');
 // });
 
-// Route::get('/analytics', function () {
-//     return view('layouts.analytics');
-// });
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'getStatsPreview'])->name('layouts.dashboard');
 
-// Route::get('/dashboard', [DashboardController::class, 'index'])->name('layouts.dashboard');
 Route::get('/passengers', [PassengerController::class, 'index'])->name('layouts.passengers');
 Route::get('/analytics', [AnalyticsController::class, 'analytics'])->name('layouts.analytics');
-Route::get('/transactions', [TransactionController::class, 'index'])->name('layouts.transactions');
 
 Route::get('/drivers/create', [DriverController::class, 'create'])->name('drivers.create');
 Route::post('/drivers', [DriverController::class, 'store'])->name('drivers.store');
@@ -46,8 +46,15 @@ Route::get('/drivers/{id}', [DriverController::class, 'show'])->name('drivers.sh
 
 Route::get('/drivers/{id}/edit' ,[DriverController::class,'edit'])->name('drivers.edit');
 Route::put('drivers/{id}', [DriverController::class, 'update'])->name('drivers.update');
+Route::delete('/drivers/{id}',  [DriverController::class, 'delete'])->name('drivers.delete');
 
-Route::delete('/drivers/{id}',  [DriverController::class, 'destroy'])->name('drivers.delete');
+Route::get('/transactions/drivers', [TransactionController::class, 'getDriversTransaction'])->name('transactions.driver');
+Route::get('/transactions/passengers', [TransactionController::class, 'getPassengersTransaction'])->name('transactions.passenger');
+Route::put('/transactions/drivers/{id}', [TransactionController::class, 'updatePayments'])->name('transactions.update-payments');
+
+
+
+
 
 
 

@@ -31,6 +31,11 @@
                 <div class="driver-info container d-flex align-items-center mt-5 mb-5">
                     <img class="me-5" src="../images/driver-photo.jpg" alt="">
                     <div class="infos">
+                        <div class="info-label">
+                            <label for="fName">First Name</label>
+                            <label for="lName">Last Name</label>
+                            <label for="mName">Middle Name</label>
+                        </div>
                         <div class="info m-0">
                             @csrf
                             @method('PUT')
@@ -38,10 +43,15 @@
                             <input type="text" name="last_name" id="" placeholder="Last Name" value="{{ $driver->last_name }}">
                             <input type="text" name="middle_name" id="" placeholder="Middle Name" value="{{ $driver->middle_name }}">
                         </div>
-                        <div class="info mt-5">
+                        <div class="info-label label2 mt-5">
+                            <label for="rfid">RFID</label>
+                            <label for="contactNumber">Contact Number</label>
+                            <label class="label-lNum" for="licenseNumber">License Number</label>
+                        </div>
+                        <div class="info">
                             @csrf
                             @method('PUT')
-                            {{-- <input type="date" name="bDay" id="" placeholder="Date of Birth" value=""> --}}
+                            <input type="text" name="rfid" id="" placeholder="RFID" value="{{ $driver->rfid }}">
                             <input type="tel" name="contact_number" id="" placeholder="Contact Number" value="{{ $driver->contact_number }}">
                             <input type="text" name="license_number" id="" placeholder="Driver's License" value="{{ $driver->license_number }}">
                         </div>
@@ -52,6 +62,10 @@
                     <h2>Vehicle Information</h2>
                 </div>
                 <div class="infos container mt-4">
+                    <div class="info-label label3">
+                        <label for="modelName">Model Name</label>
+                        <label for="plateNumber">Plate Number</label>
+                    </div>
                     <div class="info m-0">
                         @csrf
                         <input  type="text" name="model" id="" placeholder="Model" value="{{ $driver->model }}">
