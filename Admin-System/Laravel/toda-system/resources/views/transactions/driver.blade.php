@@ -18,7 +18,13 @@
 
             <!-- Content -->
             <div class="col-9 content">
-                <h2 class="mt-5 fw-bold">Driver Transactions</h2>
+                {{-- <h2 class="mt-5 fw-bold">Driver Transactions</h2> --}}
+                <div class="cotainer d-flex">
+                    <h2 class="mt-5 fw-bold">Driver's Transactions</h2>
+                    <a class="btn add mt-5" href="{{ route('transactions.create-payment') }}">
+                        Add Payment
+                    </a>
+                </div>
 
                 <!--  Completed Drivers Table Section -->
                 <h3 class="mt-5">Completed Payments</h3>
@@ -83,7 +89,7 @@
                                         <input type="number" name="toda_balance" value="{{ $driver->toda_balance }}" readonly>
                                     </td>
                                     <td>
-                                        <select name="toda_payment_status">
+                                        <select name="toda_payment_status" disabled>
                                             <option value="Completed" {{ $driver->toda_balance == 0 ? 'selected' : '' }}>Completed</option>
                                             <option value="Pending" {{ $driver->toda_balance != 0 ? 'selected' : '' }}>Pending</option>
                                         </select>

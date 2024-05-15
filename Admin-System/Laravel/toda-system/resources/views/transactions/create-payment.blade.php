@@ -36,8 +36,7 @@
                                 <label for="driver">Driver</label>
                                 <label for="lName">Commission</label>
                                 <label for="mName">Paid</label>
-                                {{-- <label for="mName">Balance</label> --}}
-                                <label for="mName">Status</label>
+                                {{-- <label for="mName">Status</label> --}}
                             </div>
                             <div class="info m-0">
                                 @csrf
@@ -50,10 +49,10 @@
                                 <input  type="number" name="toda_commission" id="" placeholder="Commission" value="10">
                                 <input type="number" name="toda_paid" id="" placeholder="Paid" value="" required>
                                 {{-- <input type="number" name="toda_balance" id="" placeholder="Balance" value="{{ $balance }}" required> --}}
-                                <select name="toda_payment_status" required>
+                                {{-- <select name="toda_payment_status" required>
                                     <option value="Completed">Completed</option>
                                     <option value="Pending" selected>Pending</option>
-                                </select>
+                                </select> --}}
                             </div>
                         </div>
                     </div>
