@@ -21,7 +21,12 @@
 
             <!-- Content -->
             <div class="col-9 content">
-                <h2 class="mt-5 fw-bold">Drivers</h2>
+                <div class="cotainer d-flex">
+                    <h2 class="mt-5 fw-bold">Drivers</h2>
+                    <a class="btn add mt-5" href="{{ route('drivers.create') }}">
+                        ADD
+                    </a>
+                </div>
                 <div class="table-container">
                     <!--  Table Section -->
                     <table class="table table-hover mt-5">
@@ -80,9 +85,9 @@
                         </tbody>
                     </table>
                 </div>
-                <a class="btn add mt-4" href="{{ route('drivers.create') }}">
+                {{-- <a class="btn add mt-4" href="{{ route('drivers.create') }}">
                     ADD
-                </a>
+                </a> --}}
             </div>
         </div>
     </div>

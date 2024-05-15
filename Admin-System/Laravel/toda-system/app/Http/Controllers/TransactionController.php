@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Charts\TransactionChart;
+use App\Models\butaos;
 use App\Models\Passenger;
 use App\Models\Driver;
 use Illuminate\Support\Facades\DB;
@@ -21,24 +22,9 @@ class TransactionController extends Controller
 
     public function index()
     {
-        // Logic to fetch and display all transactions
-        $transactions = Transaction::all();
         $drivers = Driver::all();
 
-        // Get the count of transactions for each passenger
-        // $passengerTrips = DB::table('transactions')
-        //     ->select('passenger_id', DB::raw('COUNT(*) as transaction_count'))
-        //     ->groupBy('passenger_id')
-        //     ->get();
-
-        // Get the count of transactions for each passenger along with passenger name
-        // $passengerTrips = DB::table('transactions')
-        //     ->join('passengers', 'transactions.passenger_id', '=', 'passengers.passenger_id')
-        //     ->select('transactions.passenger_id', 'passengers.name', DB::raw('COUNT(*) as transaction_count'))
-        //     ->groupBy('transactions.passenger_id', 'passengers.name')
-        //     ->get();
-
-        return view('layouts.transactions', compact('transactions', ''));
+        return view('transactions.create-payment', compact('drivers'));
     }
 
     public function getPassengersTransaction(){
@@ -60,118 +46,151 @@ class TransactionController extends Controller
 
 
     public function getDriversTransaction(){
-        $drivers = Driver::all();
+        // $drivers = Driver::all();
 
-        $driverTransactions = Driver::select('drivers.id as driver_id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number')
+        // $driverTransactions = Driver::select('drivers.id as driver_id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number')
+        //     ->leftJoin('transactions', 'drivers.id', '=', 'transactions.driver_id')
+        //     ->selectRaw('COALESCE(COUNT(transactions.transaction_id), 0) as total_trips')
+        //     ->selectRaw('COALESCE(SUM(transactions.fare_amount), 0) as total_earnings')
+        //     ->groupBy('drivers.id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number')
+        //     ->paginate(10);
+
+        // // Get drivers with "Completed" status
+        // $completedDrivers = Driver::select('drivers.id as driver_id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number')
+        // ->leftJoin('transactions', 'drivers.id', '=', 'transactions.driver_id')
+        // ->leftJoin('butaos', 'drivers.id', '=', 'butaos.driver_id')
+        // ->selectRaw('COALESCE(COUNT(transactions.transaction_id), 0) as total_trips')
+        // ->selectRaw('COALESCE(SUM(transactions.fare_amount), 0) as total_earnings')
+        // ->where('butaos.toda_payment_status', 'Completed')
+        // ->groupBy('drivers.id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number')
+        // ->get();
+
+        // // Get drivers with "Pending" status
+        // $pendingDrivers = Driver::select('drivers.id as driver_id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number')
+        //     ->leftJoin('transactions', 'drivers.id', '=', 'transactions.driver_id')
+        //     ->leftJoin('butaos', 'drivers.id', '=', 'butaos.driver_id')
+        //     ->selectRaw('COALESCE(COUNT(transactions.transaction_id), 0) as total_trips')
+        //     ->selectRaw('COALESCE(SUM(transactions.fare_amount), 0) as total_earnings')
+        //     ->where('butaos.toda_payment_status', 'Pending')
+        //     ->groupBy('drivers.id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number')
+        //     ->get();
+
+        // Get drivers with "Completed" status
+        $completedDrivers = Driver::select('drivers.id as driver_id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number')
             ->leftJoin('transactions', 'drivers.id', '=', 'transactions.driver_id')
+            ->leftJoin('butaos', 'drivers.id', '=', 'butaos.driver_id')
             ->selectRaw('COALESCE(COUNT(transactions.transaction_id), 0) as total_trips')
             ->selectRaw('COALESCE(SUM(transactions.fare_amount), 0) as total_earnings')
-            ->groupBy('drivers.id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number')
-            ->paginate(10);
+            ->selectRaw('butaos.toda_commission, butaos.toda_paid, butaos.toda_balance, butaos.toda_payment_status')
+            ->where('butaos.toda_payment_status', 'Completed')
+            ->groupBy('drivers.id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number', 'butaos.toda_commission', 'butaos.toda_paid', 'butaos.toda_balance', 'butaos.toda_payment_status')
+            ->get();
 
-        // return view('transactions.driver', ['driverTransactions' => $driverTransactions]);
+        // Get drivers with "Pending" status
+        $pendingDrivers = Driver::select('drivers.id as driver_id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number')
+            ->leftJoin('transactions', 'drivers.id', '=', 'transactions.driver_id')
+            ->leftJoin('butaos', 'drivers.id', '=', 'butaos.driver_id')
+            ->selectRaw('COALESCE(COUNT(transactions.transaction_id), 0) as total_trips')
+            ->selectRaw('COALESCE(SUM(transactions.fare_amount), 0) as total_earnings')
+            ->selectRaw('butaos.toda_commission, butaos.toda_paid, butaos.toda_balance, butaos.toda_payment_status')
+            ->where('butaos.toda_payment_status', 'Pending')
+            ->groupBy('drivers.id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number', 'butaos.toda_commission', 'butaos.toda_paid', 'butaos.toda_balance', 'butaos.toda_payment_status')
+            ->get();
+
         return view('transactions.driver', compact(
-            'driverTransactions',
-            'drivers'
+            'completedDrivers',
+            'pendingDrivers'
         ));
+        // return view('transactions.driver', compact(
+        //     'driverTransactions',
+        //     'drivers'
+        // ));
     }
-
-    // public function getDriversTransaction(){
-    //     $drivers = Driver::all();
-
-
-    //     $driverTransactions = Driver::select(
-    //         'drivers.id as driver_id',
-    //         'drivers.first_name',
-    //         'drivers.last_name',
-    //         'drivers.contact_number',
-    //         'drivers.toda_paid' // Include toda_paid in the select statement
-    //     )
-    //     ->leftJoin('transactions', 'drivers.id', '=', 'transactions.driver_id')
-    //     ->selectRaw('COALESCE(COUNT(transactions.transaction_id), 0) as total_trips')
-    //     ->selectRaw('COALESCE(SUM(transactions.fare_amount), 0) as total_earnings')
-    //     ->groupBy(
-    //         'drivers.id',
-    //         'drivers.first_name',
-    //         'drivers.last_name',
-    //         'drivers.contact_number',
-    //         'drivers.toda_paid' // Include toda_paid in the group by clause
-    //     )
-    //     ->paginate(10);
-
-
-
-    //     return view('transactions.driver', compact(
-    //         'driverTransactions',
-    //         'drivers'
-    //     ));
-    // }
-
-
-
-    // public function updatePayments(Request $request, $id)
-    // {
-    //     $driver = Driver::findOrFail($id);
-
-    //     // Get the commission and paid amount from the request
-    //     $commission = $request->input('toda_commission');
-    //     $paid = $request->input('toda_paid');
-
-    //     // Calculate the balance
-    //     $balance = abs($paid - $commission); // Absolute value to ensure it's positive
-
-    //     // Update driver's data
-    //     $driver->toda_commission = $commission;
-    //     $driver->toda_paid = $paid;
-    //     $driver->toda_balance = $balance;
-    //     $driver->toda_payment_status = $request->input('toda_payment_status');
-
-    //     // Save the changes
-    //     $driver->save();
-
-    //     return redirect()->back()->with('success', 'Driver status updated successfully');
-    // }
-
-
 
     public function updatePayments(Request $request, Driver $id)
     {
         try {
-        // dd('Update method called for ID: ' . $id);
+            // Validate the request data
+            $validatedData = $request->validate([
+                'toda_commission' => 'required|numeric|max:50',
+                'toda_paid' => 'required|numeric|max:50',
+                'toda_payment_status' => 'required|string|max:10',
+            ]);
 
-        // Validate the request data
+            // Calculate the TODA balance
+            $balance = abs($validatedData['toda_paid'] - $validatedData['toda_commission']);
+
+            if($balance == 0){
+                $validatedData['toda_payment_status'] = "Completed";
+            }
+            // if($validatedData['toda_payment_status'] == "Completed"){
+                // $balance = 0;
+            // }
+
+            // Update the driver's TODA-related data
+            // $id->update([
+            //     'toda_commission' => $validatedData['toda_commission'],
+            //     'toda_paid' => $validatedData['toda_paid'],
+            //     'toda_balance' => $balance,
+            //     'toda_payment_status' => $validatedData['toda_payment_status'],
+            // ]);
+
+            // Save the data to the butaos table
+            butaos::create([
+                'driver_id' => $id,
+                'toda_commission' => $validatedData['toda_commission'],
+                'toda_paid' => $validatedData['toda_paid'],
+                'toda_balance' => $balance,
+                'toda_payment_status' => $validatedData['toda_payment_status'],
+                'date' => now(),
+            ]);
+
+            // Redirect back with a success message
+            return redirect()->route('transactions.driver')->with('success', 'Driver payment status updated successfully');
+        } catch (\Exception $e) {
+            // Log the error
+            logger()->error('Error updating driver: ' . $e->getMessage());
+
+            // Redirect back with an error message
+            return redirect()->route('transactions.driver')->with('error', 'Failed to update driver payment status');
+        }
+    }
+
+    public function createPayment()
+    {
+        return view('transactions.create-payment');
+    }
+
+    public function storeDriverPayment(Request $request)
+    {
         $validatedData = $request->validate([
-            'toda_commission' => 'required|numeric|max:50',
-            'toda_paid' => 'required|numeric|max:50',
-            'toda_payment_status' => 'required|string|max:10',
+            'driver_id' => 'required|string|max:50',
+            'toda_commission' => 'required|string|max:255',
+            'toda_paid' => 'required|string|max:255',
+            'toda_payment_status' => 'required|string|max:255',
+            // 'toda_balance' => 'nullable|string|max:255',
         ]);
 
-        // Calculate the TODA balance
+        // $post = new butaos();
+        // $post->driver_id = $request->driver_id;
+        // $post->toda_commission = $request->toda_commission;
+        // $post->toda_paid = $request->toda_paid;
+        // $post->toda_payment_status = $request->toda_payment_status;
+        // $post->toda_balance = $request->toda_balance;
+        // $post->save();
+
         $balance = abs($validatedData['toda_paid'] - $validatedData['toda_commission']);
 
-        if($balance == 0){
-            $validatedData['toda_payment_status'] = "Completed";
-        }else{
-            $validatedData['toda_payment_status'] = $validatedData['toda_payment_status'];
-        }
-
-        // Update the driver's TODA-related data
-        $id->update([
+        butaos::create([
+            'driver_id' => $validatedData['driver_id'],
             'toda_commission' => $validatedData['toda_commission'],
             'toda_paid' => $validatedData['toda_paid'],
             'toda_balance' => $balance,
             'toda_payment_status' => $validatedData['toda_payment_status'],
+            'created_at' => now(),
         ]);
 
-        // Redirect back with a success message
-        return redirect()->route('transactions.driver')->with('success', 'Driver status updated successfully');
-    } catch (\Exception $e) {
-        // Log the error
-        logger()->error('Error updating driver: ' . $e->getMessage());
-
-        // Redirect back with an error message
-        return redirect()->route('transactions.driver')->with('error', 'Failed to update driver status');
-    }
+        return redirect()->route('transactions.driver')->with('success', 'Payment recorded successfully.');
     }
 
 

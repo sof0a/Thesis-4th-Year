@@ -36,9 +36,9 @@
                             <label for="mName">Middle Name</label>
                         </div>
                         <div class="info m-0">
-                            <input  type="text" name="fName" id="" placeholder="First Name" value="{{ $driver->first_name }}">
-                            <input type="text" name="lName" id="" placeholder="Last Name" value="{{ $driver->last_name }}">
-                            <input type="text" name="mName" id="" placeholder="Middle Name" value="{{ $driver->middle_name }}">
+                            <input  type="text" name="first_name" id="" placeholder="First Name" value="{{ $driver->first_name }}">
+                            <input type="text" name="last_name" id="" placeholder="Last Name" value="{{ $driver->last_name }}">
+                            <input type="text" name="middle_name" id="" placeholder="Middle Name" value="{{ $driver->middle_name }}">
                         </div>
                         <div class="info-label label2 mt-5">
                             <label for="rfid">RFID</label>

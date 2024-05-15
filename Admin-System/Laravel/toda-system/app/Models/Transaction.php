@@ -28,5 +28,10 @@ class Transaction extends Model
         return $this->hasMany(Transaction::class);
     }
 
+    // public function butaos()
+    // {
+    //     return $this->hasMany(butaos::class);
+    // }
+
 
 }

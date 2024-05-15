@@ -38,18 +38,20 @@ Route::get('/dashboard', [DashboardController::class, 'getStatsPreview'])->name(
 Route::get('/passengers', [PassengerController::class, 'index'])->name('layouts.passengers');
 Route::get('/analytics', [AnalyticsController::class, 'analytics'])->name('layouts.analytics');
 
-Route::get('/drivers/create', [DriverController::class, 'create'])->name('drivers.create');
-Route::post('/drivers', [DriverController::class, 'store'])->name('drivers.store');
-
 Route::get('/drivers', [DriverController::class, 'index'])->name('layouts.drivers');
+Route::get('/drivers/create', [DriverController::class, 'create'])->name('drivers.create');
 Route::get('/drivers/{id}', [DriverController::class, 'show'])->name('drivers.show'); // Driver's Details
+Route::post('/drivers', [DriverController::class, 'store'])->name('drivers.store');
 
 Route::get('/drivers/{id}/edit' ,[DriverController::class,'edit'])->name('drivers.edit');
 Route::put('drivers/{id}', [DriverController::class, 'update'])->name('drivers.update');
 Route::delete('/drivers/{id}',  [DriverController::class, 'delete'])->name('drivers.delete');
 
-Route::get('/transactions/drivers', [TransactionController::class, 'getDriversTransaction'])->name('transactions.driver');
 Route::get('/transactions/passengers', [TransactionController::class, 'getPassengersTransaction'])->name('transactions.passenger');
+
+Route::get('/transactions/drivers', [TransactionController::class, 'getDriversTransaction'])->name('transactions.driver');
+Route::get('/transactions/drivers/create-payment', [TransactionController::class, 'index'])->name('transactions.create-payment');
+Route::post('/transactions/drivers', [TransactionController::class, 'storeDriverPayment'])->name('transactions.storeDriverPayment');
 Route::put('/transactions/drivers/{id}', [TransactionController::class, 'updatePayments'])->name('transactions.update-payments');
 
 

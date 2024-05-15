@@ -60,7 +60,6 @@ class DriverController extends Controller
 
         $post = new Driver();
         $post->rfid = $request->rfid;
-        // $post->image = $request->image;
         $post->first_name = $request->first_name;
         $post->last_name = $request->last_name;
         $post->middle_name = $request->middle_name;
@@ -69,10 +68,6 @@ class DriverController extends Controller
         $post->model = $request->model;
         $post->plate_number = $request->plate_number;
         $post->save();
-
-        // $driver = new Driver();
-        // $driver->fill($validatedData);
-        // $driver->save();x
 
         return redirect()->route('layouts.drivers')->with('success', 'Driver created successfully.');
     }

@@ -55,14 +55,12 @@
                 <a class="dropdown-item {{ $activeLink === 'passenger' ? 'active' : '' }}" href="/transactions/passengers">Passenger</a>
             </div>
         </li>
+        <a class="row mt-4 tab {{ $activeLink === 'goal' ? 'active' : '' }}" href="#">
+            <img src="{{ asset('images/goal-icon.png' )}}">
+            <h5 class="m-0">TODA Goals</h5>
+        </a>
 
 
-        {{-- <a class="row mt-4 tab {{ $activeLink === 'transactions' ? 'active' : '' }}" href="/transactions">
-            <img src="{{ asset('images/transaction-icon.png ') }}">
-            <h5 class="m-0">Transactions</h5>
-        </a> --}}
-
-        <!-- <button class="btn btn-primary mt-5" id="toggleStatus"></button> -->
 
         <div class="container d-flex justify-content-between mt-5">
             <a class="row mt-4 settings mt-5" href="../views/user.html">
