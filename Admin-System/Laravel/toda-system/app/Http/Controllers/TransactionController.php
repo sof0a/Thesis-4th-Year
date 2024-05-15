@@ -55,26 +55,6 @@ class TransactionController extends Controller
         //     ->groupBy('drivers.id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number')
         //     ->paginate(10);
 
-        // // Get drivers with "Completed" status
-        // $completedDrivers = Driver::select('drivers.id as driver_id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number')
-        // ->leftJoin('transactions', 'drivers.id', '=', 'transactions.driver_id')
-        // ->leftJoin('butaos', 'drivers.id', '=', 'butaos.driver_id')
-        // ->selectRaw('COALESCE(COUNT(transactions.transaction_id), 0) as total_trips')
-        // ->selectRaw('COALESCE(SUM(transactions.fare_amount), 0) as total_earnings')
-        // ->where('butaos.toda_payment_status', 'Completed')
-        // ->groupBy('drivers.id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number')
-        // ->get();
-
-        // // Get drivers with "Pending" status
-        // $pendingDrivers = Driver::select('drivers.id as driver_id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number')
-        //     ->leftJoin('transactions', 'drivers.id', '=', 'transactions.driver_id')
-        //     ->leftJoin('butaos', 'drivers.id', '=', 'butaos.driver_id')
-        //     ->selectRaw('COALESCE(COUNT(transactions.transaction_id), 0) as total_trips')
-        //     ->selectRaw('COALESCE(SUM(transactions.fare_amount), 0) as total_earnings')
-        //     ->where('butaos.toda_payment_status', 'Pending')
-        //     ->groupBy('drivers.id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number')
-        //     ->get();
-
         // Get drivers with "Completed" status
         $completedDrivers = Driver::select('drivers.id as driver_id', 'drivers.first_name', 'drivers.last_name', 'drivers.contact_number')
             ->leftJoin('transactions', 'drivers.id', '=', 'transactions.driver_id')
@@ -107,52 +87,108 @@ class TransactionController extends Controller
         // ));
     }
 
-    public function updatePayments(Request $request, Driver $id)
-    {
+    // public function updatePayments(Request $request, Driver $id)
+    // {
+    //     try {
+    //         // Validate the request data
+    //         $validatedData = $request->validate([
+    //             'toda_commission' => 'required|numeric|max:50',
+    //             'toda_paid' => 'required|numeric|max:50',
+    //             'toda_payment_status' => 'required|string|max:10',
+    //         ]);
+
+    //         // Calculate the TODA balance
+    //         $balance = abs($validatedData['toda_paid'] - $validatedData['toda_commission']);
+
+    //         if($balance == 0)
+    //         {
+    //             $validatedData['toda_payment_status'] = "Completed";
+    //         }
+    //         else {
+    //             $validatedData['toda_payment_status'] = "Pending";
+    //         }
+    //         // if($validatedData['toda_payment_status'] == "Completed"){
+    //             // $balance = 0;
+    //         // }
+
+    //         // Update the driver's TODA-related data
+    //         // $id->update([
+    //         //     'toda_commission' => $validatedData['toda_commission'],
+    //         //     'toda_paid' => $validatedData['toda_paid'],
+    //         //     'toda_balance' => $balance,
+    //         //     'toda_payment_status' => $validatedData['toda_payment_status'],
+    //         // ]);
+
+    //         Butaos::update([
+    //             'driver_id' => $id,
+    //             'toda_commission' => $validatedData['toda_commission'],
+    //             'toda_paid' => $validatedData['toda_paid'],
+    //             'toda_balance' => $balance,
+    //             'toda_payment_status' => $validatedData['toda_payment_status'],
+    //             'date' => now(),
+    //         ]);
+
+    //         // Redirect back with a success message
+    //         return redirect()->route('transactions.driver')->with('success', 'Driver payment status updated successfully');
+    //     } catch (\Exception $e) {
+    //         // Log the error
+    //         logger()->error('Error updating driver: ' . $e->getMessage());
+
+    //         // Redirect back with an error message
+    //         return redirect()->route('transactions.driver')->with('error', 'Failed to update driver payment status');
+    //     }
+    // }
+
+    public function updatePayments(Request$request, $driverId){
         try {
             // Validate the request data
             $validatedData = $request->validate([
                 'toda_commission' => 'required|numeric|max:50',
                 'toda_paid' => 'required|numeric|max:50',
-                'toda_payment_status' => 'required|string|max:10',
+                'toda_payment_status' => 'nullable|string|max:10',
             ]);
 
             // Calculate the TODA balance
             $balance = abs($validatedData['toda_paid'] - $validatedData['toda_commission']);
 
-            if($balance == 0){
+            // Automatically set the payment status based on the balance
+            if ($balance == 0) {
                 $validatedData['toda_payment_status'] = "Completed";
+            } else {
+                $validatedData['toda_payment_status'] = "Pending";
             }
-            // if($validatedData['toda_payment_status'] == "Completed"){
-                // $balance = 0;
-            // }
 
-            // Update the driver's TODA-related data
-            // $id->update([
-            //     'toda_commission' => $validatedData['toda_commission'],
-            //     'toda_paid' => $validatedData['toda_paid'],
-            //     'toda_balance' => $balance,
-            //     'toda_payment_status' => $validatedData['toda_payment_status'],
-            // ]);
+            // Find existing Butao record for the driver or create a new one
+            $butao = Butaos::where('driver_id', $driverId)->first();
 
-            // Save the data to the butaos table
-            butaos::create([
-                'driver_id' => $id,
-                'toda_commission' => $validatedData['toda_commission'],
-                'toda_paid' => $validatedData['toda_paid'],
-                'toda_balance' => $balance,
-                'toda_payment_status' => $validatedData['toda_payment_status'],
-                'date' => now(),
-            ]);
+            if ($butao) {
+                // Update the existing record
+                $butao->update([
+                    'toda_commission' => $validatedData['toda_commission'],
+                    'toda_paid' => $validatedData['toda_paid'],
+                    'toda_balance' => $balance,
+                    'toda_payment_status' => $validatedData['toda_payment_status'],
+                ]);
+            } else {
+                // Create a new record
+                Butaos::create([
+                    'driver_id' => $driverId,
+                    'toda_commission' => $validatedData['toda_commission'],
+                    'toda_paid' => $validatedData['toda_paid'],
+                    'toda_balance' => $balance,
+                    'toda_payment_status' => $validatedData['toda_payment_status'],
+                    'date' => now()
+                ]);
+            }
 
             // Redirect back with a success message
-            return redirect()->route('transactions.driver')->with('success', 'Driver payment status updated successfully');
+            return redirect()->route('transactions.driver')->with('success', 'Driver status updated successfully');
         } catch (\Exception $e) {
             // Log the error
-            logger()->error('Error updating driver: ' . $e->getMessage());
+            Log::error('Error updating driver: ' . $e->getMessage());
 
             // Redirect back with an error message
-            return redirect()->route('transactions.driver')->with('error', 'Failed to update driver payment status');
+            return redirect()->route('transactions.driver')->with('error', 'Failed to update driver status');
         }
     }
 
@@ -170,14 +206,6 @@ class TransactionController extends Controller
             'toda_payment_status' => 'required|string|max:255',
             // 'toda_balance' => 'nullable|string|max:255',
         ]);
-
-        // $post = new butaos();
-        // $post->driver_id = $request->driver_id;
-        // $post->toda_commission = $request->toda_commission;
-        // $post->toda_paid = $request->toda_paid;
-        // $post->toda_payment_status = $request->toda_payment_status;
-        // $post->toda_balance = $request->toda_balance;
-        // $post->save();
 
         $balance = abs($validatedData['toda_paid'] - $validatedData['toda_commission']);
 
