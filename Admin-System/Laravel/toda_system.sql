@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2024 at 01:49 PM
+-- Generation Time: May 18, 2024 at 07:20 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -40,11 +40,42 @@ CREATE TABLE `admins` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `butaos`
+--
+
+CREATE TABLE `butaos` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `driver_id` int(10) UNSIGNED NOT NULL,
+  `toda_commission` decimal(10,2) NOT NULL,
+  `toda_paid` decimal(10,2) NOT NULL,
+  `toda_balance` decimal(10,2) NOT NULL,
+  `toda_payment_status` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `butaos`
+--
+
+INSERT INTO `butaos` (`id`, `driver_id`, `toda_commission`, `toda_paid`, `toda_balance`, `toda_payment_status`, `created_at`, `updated_at`) VALUES
+(2, 3, '10.00', '10.00', '0.00', 'Completed', '2024-05-14 18:52:52', '2024-05-14 22:24:27'),
+(3, 5, '10.00', '10.00', '0.00', 'Completed', '2024-05-14 22:34:30', '2024-05-14 22:34:37'),
+(4, 8, '10.00', '10.00', '0.00', 'Completed', '2024-05-14 22:34:51', '2024-05-14 22:35:12'),
+(5, 5, '10.00', '5.00', '5.00', 'Pending', '2024-05-14 22:35:29', '2024-05-14 22:35:29'),
+(8, 3, '10.00', '5.00', '5.00', 'Pending', '2024-05-15 21:07:48', '2024-05-15 21:07:48'),
+(9, 0, '10.00', '10.00', '0.00', 'Completed', '2024-05-15 21:09:35', '2024-05-15 21:09:35');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `drivers`
 --
 
 CREATE TABLE `drivers` (
   `id` int(10) UNSIGNED NOT NULL,
+  `rfid` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `first_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `middle_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -60,19 +91,18 @@ CREATE TABLE `drivers` (
 -- Dumping data for table `drivers`
 --
 
-INSERT INTO `drivers` (`id`, `first_name`, `last_name`, `middle_name`, `license_number`, `contact_number`, `model`, `plate_number`, `created_at`, `updated_at`) VALUES
-(2, 'Robert', 'Downy', 'F.', 'DL2', '+639123456782', 'Model 2', 'TN2', '2024-04-17 01:57:20', '2024-04-17 01:57:20'),
-(3, 'Bob', 'Builder', '', 'DL3', '+639123456783', 'Model 3', 'TN3', '2024-04-17 01:57:20', '2024-04-17 01:57:20'),
-(4, 'Allysa', 'Dizon', 'A', 'DL4', '+639123456784', 'Model 4', 'TN4', '2024-04-17 01:57:20', '2024-05-01 11:21:14'),
-(5, 'Erick', 'Monson', '', 'DL5', '+639123456785', 'Model 5', 'TN5', '2024-04-17 01:57:20', '2024-04-17 01:57:20'),
-(6, 'Roald', 'Comargo', NULL, 'DL6', '+639123456786', 'Model 6', 'TN6', '2024-04-17 01:57:20', '2024-05-01 10:44:56'),
-(7, 'Samson', 'WithS', NULL, 'DL7', '+639123456787', 'Model 7', 'TN7', '2024-04-17 01:57:20', '2024-05-01 10:44:53'),
-(8, 'Cyrus', 'Great', '', 'DL8', '+639123456788', 'Model 8', 'TN8', '2024-04-17 01:57:20', '2024-04-17 01:57:20'),
-(12, 'Arnold', 'Swswsw', '', 'LN ONE', '091234567899', 'AWS', 'PN222', '2024-04-26 12:18:01', '2024-04-26 12:18:01'),
-(13, 'a', 'a', 'a', 'a', 'a', 'a', 'a', '2024-05-01 01:40:20', '2024-05-01 01:40:20'),
-(14, 'G', 'G', 'G', 'G', 'GG', 'G', 'G', '2024-05-01 09:20:02', '2024-05-01 09:20:02'),
-(15, '1', '1', '1', '1', '1', '1', '1', '2024-05-01 09:20:12', '2024-05-01 09:20:12'),
-(17, 'G', 'G', 'G', 'LSLLS', 'G', 'S', '2', '2024-05-01 09:20:48', '2024-05-01 09:20:48');
+INSERT INTO `drivers` (`id`, `rfid`, `image`, `first_name`, `last_name`, `middle_name`, `license_number`, `contact_number`, `model`, `plate_number`, `created_at`, `updated_at`) VALUES
+(2, '123', '', 'Robert', 'Downy', 'F.', 'DL2', '+639123456782', 'Model 2', 'TN2', '2024-04-17 01:57:20', '2024-05-13 19:49:29'),
+(3, '345', '', 'Bob', 'Builder', NULL, 'DL3', '+639123456783', 'Model 3', 'TN3', '2024-04-17 01:57:20', '2024-05-14 14:20:24'),
+(4, '678', '', 'Allysa', 'Dizon', 'A', 'DL4', '+639123456784', 'Model 4', 'TN4', '2024-04-17 01:57:20', '2024-05-01 11:21:14'),
+(5, '789', '', 'Erick', 'Monson', '', 'DL5', '+639123456785', 'Model 5', 'TN5', '2024-04-17 01:57:20', '2024-05-12 19:18:27'),
+(6, '891', '', 'Roald', 'Comargo', NULL, 'DL6', '+639123456786', 'Model 6', 'TN6', '2024-04-17 01:57:20', '2024-05-01 10:44:56'),
+(7, '124', '', 'Samson', 'WithS', NULL, 'DL7', '+639123456787', 'Model 7', 'TN7', '2024-04-17 01:57:20', '2024-05-01 10:44:53'),
+(8, '125', '', 'Cyrus', 'Great', '', 'DL8', '+639123456788', 'Model 8', 'TN8', '2024-04-17 01:57:20', '2024-04-17 01:57:20'),
+(12, '126', '', 'Arnold', 'Swswsw', '', 'LN ONE', '091234567899', 'AWS', 'PN222', '2024-04-26 12:18:01', '2024-04-26 12:18:01'),
+(13, '127', '', 'a', 'a', 'a', 'a', 'a', 'a', 'a', '2024-05-01 01:40:20', '2024-05-01 01:40:20'),
+(14, '128', '', 'G', 'G', 'G', 'G', 'GG', 'G', 'G', '2024-05-01 09:20:02', '2024-05-01 09:20:02'),
+(18, '131', '', 'ROald', 'Comargo', NULL, 'R12232', '12454578', 'M1', 'asd2222', '2024-05-08 16:22:56', '2024-05-08 16:22:56');
 
 -- --------------------------------------------------------
 
@@ -88,6 +118,22 @@ CREATE TABLE `failed_jobs` (
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `goals`
+--
+
+CREATE TABLE `goals` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cost` int(11) NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -115,7 +161,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2024_04_02_052421_create_drivers_table', 1),
 (7, '2024_04_02_052426_create_tricycles_table', 1),
 (8, '2024_04_02_052438_create_passengers_table', 1),
-(9, '2024_04_02_061738_create_transactions_table', 1);
+(9, '2024_04_02_061738_create_transactions_table', 1),
+(11, '2024_05_14_025647_create_toda_goals_table', 2),
+(13, '2024_05_14_033511_create_butao_table', 3),
+(14, '2024_05_14_055124_create_butaos_table', 4);
 
 -- --------------------------------------------------------
 
@@ -225,6 +274,22 @@ INSERT INTO `transactions` (`transaction_id`, `driver_id`, `passenger_id`, `date
 (19, 4, 15, '2024-02-09 00:00:00', '100.00', 'Example landmark', 'Rainbow 23', 'Gate 2', 'Example notes', 'Completed', '2024-04-18 10:06:34', '2024-04-18 10:06:34'),
 (20, 5, 9, '2024-05-05 00:00:00', '100.00', 'Example landmark', 'Orange 8', 'Rainbow 6', 'Example notes', 'Completed', '2024-04-18 10:06:34', '2024-04-18 10:06:34');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaction_toda`
+--
+
+CREATE TABLE `transaction_toda` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `transaction_id` bigint(20) UNSIGNED NOT NULL,
+  `driver_id` bigint(20) UNSIGNED NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `paid_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -235,6 +300,12 @@ INSERT INTO `transactions` (`transaction_id`, `driver_id`, `passenger_id`, `date
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`admin_id`),
   ADD UNIQUE KEY `admins_email_unique` (`email`);
+
+--
+-- Indexes for table `butaos`
+--
+ALTER TABLE `butaos`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `drivers`
@@ -249,6 +320,12 @@ ALTER TABLE `drivers`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `goals`
+--
+ALTER TABLE `goals`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -283,6 +360,12 @@ ALTER TABLE `transactions`
   ADD PRIMARY KEY (`transaction_id`);
 
 --
+-- Indexes for table `transaction_toda`
+--
+ALTER TABLE `transaction_toda`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -293,10 +376,16 @@ ALTER TABLE `admins`
   MODIFY `admin_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `butaos`
+--
+ALTER TABLE `butaos`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `drivers`
 --
 ALTER TABLE `drivers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -305,10 +394,16 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `goals`
+--
+ALTER TABLE `goals`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `passengers`
@@ -327,6 +422,12 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `transactions`
   MODIFY `transaction_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `transaction_toda`
+--
+ALTER TABLE `transaction_toda`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
